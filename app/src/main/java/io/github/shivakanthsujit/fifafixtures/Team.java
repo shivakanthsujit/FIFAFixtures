@@ -3,11 +3,12 @@ package io.github.shivakanthsujit.fifafixtures;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Team  {
+public class Team implements Serializable {
 
     String name;
     ArrayList<Fixture> fixtures;

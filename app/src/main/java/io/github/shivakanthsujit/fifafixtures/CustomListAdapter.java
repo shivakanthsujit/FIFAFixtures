@@ -8,15 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class CustomListAdapter extends ArrayAdapter {
 
 
     private final Activity context;
 
     private final Team[] teams;
-    private final Fixture[] fixes;
+    private final ArrayList<Fixture> fixes;
 
-    public CustomListAdapter(Activity context, Fixture[] fixParam,Team[] teamParam){
+    public CustomListAdapter(Activity context, ArrayList<Fixture> fixParam,Team[] teamParam){
 
         super(context,R.layout.listview_row , fixParam);
         this.context=context;
@@ -29,21 +31,21 @@ public class CustomListAdapter extends ArrayAdapter {
         View rowView=inflater.inflate(R.layout.listview_row, null,true);
 
         //this code gets references to objects in the listview_row.xml file
-        TextView teamAN = (TextView) rowView.findViewById(R.id.teamA);
-        TextView teamBN = (TextView) rowView.findViewById(R.id.teamB);
-        TextView date = (TextView) rowView.findViewById(R.id.date);
-        TextView time = (TextView) rowView.findViewById(R.id.time);
-        ImageView imgA = (ImageView) rowView.findViewById(R.id.imgA);
-        ImageView imgB = (ImageView) rowView.findViewById(R.id.imgB);
+        TextView teamAN = rowView.findViewById(R.id.teamA);
+        TextView teamBN = rowView.findViewById(R.id.teamB);
+        TextView date = rowView.findViewById(R.id.date);
+        TextView time = rowView.findViewById(R.id.time);
+        ImageView imgA = rowView.findViewById(R.id.imgA);
+        ImageView imgB = rowView.findViewById(R.id.imgB);
 
         //this code sets the values of the objects to values from the arrays
-        teamAN.setText(fixes[position].retTN('A'));
-        teamBN.setText(fixes[position].retTN('B'));
-        date.setText(fixes[position].retTN('D'));
-        time.setText(fixes[position].retTN('T'));
+        teamAN.setText(fixes.get(position).retTN('A'));
+        teamBN.setText(fixes.get(position).retTN('B'));
+        date.setText(fixes.get(position).retTN('D'));
+        time.setText(fixes.get(position).retTN('T'));
 
-        Team A = fixes[position].getTeam(fixes[position].retTN('A'),teams);
-        Team B = fixes[position].getTeam(fixes[position].retTN('B'),teams);
+        Team A = fixes.get(position).getTeam(fixes.get(position).retTN('A'),teams);
+        Team B = fixes.get(position).getTeam(fixes.get(position).retTN('B'),teams);
         imgA.setImageResource(A.imgid);
         imgB.setImageResource(B.imgid);
 

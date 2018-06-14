@@ -1,10 +1,11 @@
 package io.github.shivakanthsujit.fifafixtures;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.*;
 
-public class Fixture {
+public class Fixture implements Serializable {
     String teamA, teamB,venue;
     Date dt;
     int fxid;
@@ -36,6 +37,7 @@ public class Fixture {
         String time = localDateFormat.format(dt);
         SimpleDateFormat L = new SimpleDateFormat("yyyy-MM-dd");
         String date = L.format(dt);
+        String id = String.valueOf(fxid);
         if(T=='A')
             return teamA;
         else if (T=='B')
@@ -44,6 +46,8 @@ public class Fixture {
             return date;
         else if (T=='T')
             return time;
+        else if (T == 'I')
+            return id;
 
         return "";
     }
