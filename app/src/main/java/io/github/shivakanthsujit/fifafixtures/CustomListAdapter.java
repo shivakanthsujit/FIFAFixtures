@@ -35,6 +35,7 @@ public class CustomListAdapter extends ArrayAdapter {
         TextView teamBN = rowView.findViewById(R.id.teamB);
         TextView date = rowView.findViewById(R.id.date);
         TextView time = rowView.findViewById(R.id.time);
+        TextView venue = rowView.findViewById(R.id.venue);
         ImageView imgA = rowView.findViewById(R.id.imgA);
         ImageView imgB = rowView.findViewById(R.id.imgB);
 
@@ -43,11 +44,12 @@ public class CustomListAdapter extends ArrayAdapter {
         teamBN.setText(fixes.get(position).retTN('B'));
         date.setText(fixes.get(position).retTN('D'));
         time.setText(fixes.get(position).retTN('T'));
+        venue.setText(fixes.get(position).retTN('V'));
 
         Team A = fixes.get(position).getTeam(fixes.get(position).retTN('A'),teams);
         Team B = fixes.get(position).getTeam(fixes.get(position).retTN('B'),teams);
-        imgA.setImageResource(A.imgid);
-        imgB.setImageResource(B.imgid);
+        imgA.setImageURI(A.toUri(A.imgid));
+        imgB.setImageURI(B.toUri(B.imgid));
 
         return rowView;
 

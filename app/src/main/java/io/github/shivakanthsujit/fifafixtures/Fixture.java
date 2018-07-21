@@ -1,6 +1,7 @@
 package io.github.shivakanthsujit.fifafixtures;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.*;
@@ -30,13 +31,30 @@ public class Fixture implements Serializable {
         A.newFix(B,d,v,id);
         B.newFix(A,d,v,id);
     }
-
+    public Fixture(int id)
+    {
+        fxid = id;
+    }
     public String retTN(char T)
     {
-        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
-        String time = localDateFormat.format(dt);
-        SimpleDateFormat L = new SimpleDateFormat("yyyy-MM-dd");
-        String date = L.format(dt);
+        SimpleDateFormat localDateFormat ;
+        String time ="" ;
+        try{
+            localDateFormat = new SimpleDateFormat("HH:mm");
+            time = localDateFormat.format(dt);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        SimpleDateFormat L;
+        String date="";
+        try {
+            L = new SimpleDateFormat("yyyy-MM-dd");
+            date= L.format(dt);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
         String id = String.valueOf(fxid);
         if(T=='A')
             return teamA;
@@ -48,6 +66,8 @@ public class Fixture implements Serializable {
             return time;
         else if (T == 'I')
             return id;
+        else if(T == 'V')
+            return venue;
 
         return "";
     }
@@ -72,6 +92,55 @@ public class Fixture implements Serializable {
         }
         return teams[mid];
     }
+
+    public void updateF(char T,String t)
+    {
+        if(T == 'A')
+            teamA = t;
+        else if(T == 'B')
+            teamB = t;
+        else if(T == 'V')
+            venue = t;
+        else if (T=='D')
+        {
+            SimpleDateFormat localDateFormat ;
+            String time ="" ;
+            try{
+                localDateFormat = new SimpleDateFormat("HH:mm");
+                time = localDateFormat.format(dt);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            t+=" " + time;
+            try {
+                dt=new SimpleDateFormat("yyyy-mm-dd HH:mm").parse(t);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+        else if (T=='T')
+        {
+            SimpleDateFormat L;
+            String date="";
+            try {
+            L = new SimpleDateFormat("yyyy-MM-dd");
+            date= L.format(dt);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
+            t=date + " " + t;
+            try {
+                dt=new SimpleDateFormat("yyyy-mm-dd HH:mm").parse(t);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 
 }

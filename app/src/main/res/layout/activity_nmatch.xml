@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MatchActivity">
+    tools:context=".NMatchActivity">
 
     <ImageView
         android:id="@+id/imgA"
@@ -48,10 +48,11 @@
 
     <AutoCompleteTextView
         android:id="@+id/HEVta"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="42dp"
         android:layout_marginTop="15dp"
         android:gravity="center"
+        android:selectAllOnFocus="true"
         android:text="Team A"
         app:layout_constraintEnd_toStartOf="@+id/HEVtb"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,10 +61,11 @@
 
     <AutoCompleteTextView
         android:id="@+id/HEVtb"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:gravity="center"
+        android:selectAllOnFocus="true"
         android:text="Team B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -104,6 +106,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="170dp"
         android:gravity="center"
+        android:selectAllOnFocus="true"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -118,6 +121,7 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="text"
+        android:selectAllOnFocus="true"
         android:text="TextView"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
